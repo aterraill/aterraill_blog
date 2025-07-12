@@ -36,7 +36,7 @@ header:
 # Site footer
 footer:
   copyright:
-    notice: '© {year} Arnaud Terraillon. This work is licensed under {license}'
+    notice: '© {year} Arnaud Terraillon. This work is licensed under {license} - Background image designed by Freepik, www.freepik.com'
     license:
       enable: true
       allow_derivatives: false

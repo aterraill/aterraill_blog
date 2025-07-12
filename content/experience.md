@@ -5,6 +5,9 @@ type: landing
 
 design:
   spacing: '5rem'
+  background:
+    image:
+      filename: vectorised-surf.svg
 
 # Note: `username` refers to the user's folder name in `content/authors/`
 
