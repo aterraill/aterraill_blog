@@ -17,7 +17,7 @@ sections:
           # Add your image background to `assets/media/`.
           filename: aboutme.svg
           filters:
-            brightness: 0.8
+            brightness: 0.1
           size: cover
           position: center
           parallax: false
