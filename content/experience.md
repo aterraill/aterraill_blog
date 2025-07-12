@@ -8,6 +8,8 @@ design:
   background:
     image:
       filename: palm-trees.svg
+      filters:
+          brightness: 0.5
 
 # Note: `username` refers to the user's folder name in `content/authors/`
 
