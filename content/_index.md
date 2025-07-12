@@ -15,7 +15,7 @@ sections:
         color: black
         image:
           # Add your image background to `assets/media/`.
-          filename: landingpage.svg
+          filename: blog.svg
           filters:
             brightness: 1
           size: cover
