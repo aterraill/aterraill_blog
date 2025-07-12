@@ -15,9 +15,9 @@ sections:
         color: black
         image:
           # Add your image background to `assets/media/`.
-          filename: summer-background.svg
+          filename: surf.svg
           filters:
-            brightness: 0.5
+            brightness: 1
           size: cover
           position: center
           parallax: false
