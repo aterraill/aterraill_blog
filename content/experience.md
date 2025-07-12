@@ -9,7 +9,7 @@ design:
     image:
       filename: palm-trees.svg
       filters:
-          brightness: 0.5
+          brightness: 0.2
 
 # Note: `username` refers to the user's folder name in `content/authors/`
 
