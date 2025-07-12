@@ -15,9 +15,9 @@ sections:
         color: black
         image:
           # Add your image background to `assets/media/`.
-          filename: aboutme.svg
+          filename: main.svg
           filters:
-            brightness: 0.1
+            brightness: 1
           size: cover
           position: center
           parallax: false
