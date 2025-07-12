@@ -3,15 +3,24 @@ title: 'Home'
 date: 2023-10-24
 type: landing
 sections:
-  - block: resume-biography
+  - block: resume-biography-3
     content:
-      # The user's folder name in content/authors/
+      # Choose a user profile to display (a folder name within `content/authors/`)
       username: admin
+      text: ""
+      # Show a call-to-action button under your biography? (optional)
     design:
-      spacing:
-        padding: [0, 0, 0, 0]
-      biography:
-        style: 'text-align: justify; font-size: 0.8em;'
+      css_class: dark
+      background:
+        color: black
+        image:
+          # Add your image background to `assets/media/`.
+          filename: summer-background.svg
+          filters:
+            brightness: 0.5
+          size: cover
+          position: center
+          parallax: false
   - block: collection
     content:
       filters:
