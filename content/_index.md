@@ -15,7 +15,7 @@ sections:
         color: black
         image:
           # Add your image background to `assets/media/`.
-          filename: main.svg
+          filename: main_lowres.svg
           filters:
             brightness: 1
           size: cover
