@@ -7,9 +7,9 @@ design:
   spacing: '5rem'
   background:
     image:
-      filename: palm-trees.svg
+      filename: about-page.svg
       filters:
-          brightness: 0.01
+          brightness: 1
 
 # Note: `username` refers to the user's folder name in `content/authors/`
 
