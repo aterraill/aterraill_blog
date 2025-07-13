@@ -7,9 +7,9 @@ design:
   spacing: '5rem'
   background:
     image:
-      filename: cool-background.svg
+      filename: black-background.svg
       filters:
-          brightness: 0.1
+          brightness: 1
 
 # Note: `username` refers to the user's folder name in `content/authors/`
 
