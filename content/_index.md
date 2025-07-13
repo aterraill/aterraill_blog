@@ -15,7 +15,7 @@ sections:
         color: black
         image:
           # Add your image background to `assets/media/`.
-          filename: mobile_background.svg
+          filename: uniform-background.svg
           filters:
             brightness: 1
           size: cover
