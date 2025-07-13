@@ -15,10 +15,10 @@ sections:
         color: black
         image:
           # Add your image background to `assets/media/`.
-          filename: main-background.svg
+          filename: square-background.svg
           filters:
             brightness: 1
-          size: contain
+          size: cover
           position: center
           parallax: false
   - block: collection
