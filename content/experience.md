@@ -9,7 +9,7 @@ design:
     image:
       filename: cool-background.svg
       filters:
-          brightness: 1
+          brightness: 0.1
 
 # Note: `username` refers to the user's folder name in `content/authors/`
 
