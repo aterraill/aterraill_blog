@@ -7,7 +7,7 @@ design:
   spacing: '5rem'
   background:
     image:
-      filename: dark-background.svg
+      filename: uniform-background.svg
       filters:
           brightness: 1
 
