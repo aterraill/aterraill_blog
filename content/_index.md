@@ -18,7 +18,7 @@ sections:
           filename: main-background.svg
           filters:
             brightness: 1
-          size: cover
+          size: contain
           position: center
           parallax: false
   - block: collection
