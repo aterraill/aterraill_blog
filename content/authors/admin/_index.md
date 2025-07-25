@@ -49,19 +49,19 @@ education:
 
 work:
   - position: Technical lead in Artificial Intelligence and Computer Vision
-    company_name: Aerospace company
+    company_name: AIRBUS Group
     date_start: 2021-01-01
     date_end: ''
     summary: |
 
   - position: Artificial Intelligence and Computer Vision Research Engineer
-    company_name: Aerospace company
+    company_name: AIRBUS Group
     date_start: 2019-10-01
     date_end: 2021-01-01
     summary: |
 
   - position: Artificial Intelligence and Computer Vision Research Engineer Intern
-    company_name: Aerospace company
+    company_name: AIRBUS Group
     date_start: 2019-03-01
     date_end: 2021-09-30
     summary: |
