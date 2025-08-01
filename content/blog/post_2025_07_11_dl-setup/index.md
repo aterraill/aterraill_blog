@@ -1,6 +1,7 @@
 ---
 title: 💻 My new deep learning setup 
 summary: I created a self-hosted dev website for my deep learning projects
+date: 2025-07-11
 
 # Featured image
 # Place an image named `featured.jpg/png` in this page's folder and customize its options here.
