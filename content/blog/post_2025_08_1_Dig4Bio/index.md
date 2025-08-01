@@ -8,13 +8,15 @@ tags: ["Raman Spectroscopy", "Transfer Learning", "UNet", "Data Augmentation", "
 summary: "In this post, I walk through my proposal for the DIG-4-BIO Raman Transfer Learning Challenge, where I achieved a public R² score of 0.7491 and reached 3rd place (as of writing). The task involves predicting chemical concentrations from Raman spectra collected from various instruments—a highly realistic and noisy setting. I detail how I cleaned, augmented, modelled, and evaluated this complex dataset."
 ---
 
-##  Introduction
+## Introduction
+
 I found The Dig4Bio Raman Transfer learning challenge on [Kaggle](https://www.kaggle.com/competitions/dig-4-bio-raman-transfer-learning-challenge/overview). It caught my eye because it is a European Union initiative to advance in the field of chemistry thanks to AI contributions. Furthermore, the challenge states that little data is available, which makes it even more interesting to me because solving the challenge is more about good algorithm design and not purely hardware.
 Raman spectroscopy is interesting because it is a relatively low-cost and a non-destructive method for estimating concentrations of molecules in samples through a spectrum. However, algorithms designed for concentration prediction are machine-specific and fail to generalise across instruments. The challenge is to design an algorithm that successfully generalises predictions across machines from little data. More specifically concentrations of glucose, acetate, and magnesium sulphate are to be predicted. 
 ![Raman spectroscopy spectrum](Image1.png) 
 ---
 
 ## Description of the data
+
 The data came from 9 different Raman instruments, each producing spectra with varying formats, resolutions, and signal-to-noise ratios. Furthermore, there were slight errors between the wavelengths displayed in the data tables and in the articles describing the data. 
 ![Wavelength spread according to data](Image2.png) 
 ![Wavelength spread according to paper](Image3.png) 
@@ -44,6 +46,7 @@ This modular preprocessing step was crucial to ensure data consistency before mo
 ---
 
 ## Data Augmentation: a pivotal point of my strategy 
+
 There are only 2453 spectra in the sample provided for this competition. Furthermore, traditionally, the data has to be split into a training, a validation and a test set. I thus have considered two actions in my strategy:
 - Using lightweight networks and if possible pretrained-networks
 - Relying heavily on data augmentation, meaning adding noise and slightly modifying the input data to artificially create diversity in the training set so that the network won’t overfit on input samples.
@@ -69,6 +72,7 @@ The model was implemented in PyTorch and I adapted the Hugging Face implementati
 ---
 
 ## My training strategy
+
 I have implemented a custom loss that takes into account the mean squared error loss as well as the R2 score. This encourages convergence toward the predicted true targets, while preserving correlation patterns.
 Furthermore, I used a stratified validation split based on quantiles of the average target values, which tends to sample validation data uniformly amongst the data available. The goal is to have a representative validation set and because there is little data available, to minimise the validation set size as much as possible.
 I also implemented a standard scaler on targets, forcing them to be in the 0,1 range. This helps the regression stabilise during backpropagation.
@@ -76,12 +80,14 @@ Furthermore, I implemented a mechanism that saves the best model based on the be
 Finally, I performed a grid search over various parameters, including loss functions, validation split size, learning rates, and number of epochs and published the best model on Kaggle. Given the limited data, I opted for relatively short training cycles (100–300 epochs) to avoid overfitting.
 ---
 ## Inference strategy
+
 Since each sample was measured twice, I infer the model twice independently and then average the results for submission. 
 ## Results
 On the public leaderboard, my best model achieved, as of now, a R2 score of 0.74910, which corresponds to third place.
 Once the competition is completed, I will publish my code to GitHub in a public repository. 
 ---
 ## Way forward
+
 Through my experiments, I noticed that magnesium sulphate seems very easy to predict, while glucose — and especially sodium acetate — were harder to predict. Looking at a spectrum, magnesium sulphate corresponds to two peaks that are quite easily identifiable, while glucose and sodium acetate have several peaks across the spectrum that seem at lower intensities. 
 Looking at the learning curves, the validation R2 of magnesium converges almost immediately after 10 epochs. However sodium acetate reaches a maximum at around 0.7 after more than a hundred epochs. 
 I’ve identified several potential improvements:
@@ -90,6 +96,7 @@ I’ve identified several potential improvements:
 - I also have identified the lack of data as a main issue for this challenge. I could revisit the data augmentation pipeline and validation set creation algorithms.
 ---
 ## Key Takeaways
+
 - Raman spectra differ significantly across instruments, requiring robust preprocessing.
 - A shared wavelength grid and smoothing helped standardize inputs across devices.
 - Data augmentation and a lightweight 1D U-Net helped prevent overfitting on the small dataset.
