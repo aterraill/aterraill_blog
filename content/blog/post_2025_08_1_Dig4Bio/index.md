@@ -6,6 +6,7 @@ date: 2025-08-01
 categories: ["Machine Learning", "Spectroscopy", "Competitions"]
 tags: ["Raman Spectroscopy", "Transfer Learning", "UNet", "Data Augmentation", "Regression", "Kaggle"]
 summary: "In this post, I walk through my proposal for the DIG-4-BIO Raman Transfer Learning Challenge, where I achieved a public R² score of 0.7491 and reached 3rd place (as of writing). The task involves predicting chemical concentrations from Raman spectra collected from various instruments—a highly realistic and noisy setting. I detail how I cleaned, augmented, modelled, and evaluated this complex dataset."
+
 ---
 
 ## Introduction
@@ -13,6 +14,7 @@ summary: "In this post, I walk through my proposal for the DIG-4-BIO Raman Trans
 I found The Dig4Bio Raman Transfer learning challenge on [Kaggle](https://www.kaggle.com/competitions/dig-4-bio-raman-transfer-learning-challenge/overview). It caught my eye because it is a European Union initiative to advance in the field of chemistry thanks to AI contributions. Furthermore, the challenge states that little data is available, which makes it even more interesting to me because solving the challenge is more about good algorithm design and not purely hardware.
 Raman spectroscopy is interesting because it is a relatively low-cost and a non-destructive method for estimating concentrations of molecules in samples through a spectrum. However, algorithms designed for concentration prediction are machine-specific and fail to generalise across instruments. The challenge is to design an algorithm that successfully generalises predictions across machines from little data. More specifically concentrations of glucose, acetate, and magnesium sulphate are to be predicted. 
 ![Raman spectroscopy spectrum](Image1.png) 
+
 ---
 
 ## Description of the data
@@ -43,6 +45,7 @@ This modular preprocessing step was crucial to ensure data consistency before mo
 ![Raw spectrum](Image6.png) 
 ![ Cut and resampled spectrum](Image7.png) 
 ![ Scaled and smoothed spectrum](Image8.png) 
+
 ---
 
 ## Data Augmentation: a pivotal point of my strategy 
@@ -58,6 +61,7 @@ To enhance generalization, I implemented a custom `SpectrumAugmenter` with domai
 - Smoothing with Gaussian kernels
 - Scaling and baseline drift
 During training, spectra can be altered using one or more data augmentation techniques. Each transformation has a chance of being applied.
+
 ---
 
 ## Neural network: U-Net 1D with Multi-Head Regression
@@ -78,14 +82,18 @@ Furthermore, I used a stratified validation split based on quantiles of the aver
 I also implemented a standard scaler on targets, forcing them to be in the 0,1 range. This helps the regression stabilise during backpropagation.
 Furthermore, I implemented a mechanism that saves the best model based on the best validation R2 and not just loss. This is justified by the goal of the challenge that evaluates outputs based on R2 score.
 Finally, I performed a grid search over various parameters, including loss functions, validation split size, learning rates, and number of epochs and published the best model on Kaggle. Given the limited data, I opted for relatively short training cycles (100–300 epochs) to avoid overfitting.
+
 ---
+
 ## Inference strategy
 
 Since each sample was measured twice, I infer the model twice independently and then average the results for submission. 
 ## Results
 On the public leaderboard, my best model achieved, as of now, a R2 score of 0.74910, which corresponds to third place.
 Once the competition is completed, I will publish my code to GitHub in a public repository. 
+
 ---
+
 ## Way forward
 
 Through my experiments, I noticed that magnesium sulphate seems very easy to predict, while glucose — and especially sodium acetate — were harder to predict. Looking at a spectrum, magnesium sulphate corresponds to two peaks that are quite easily identifiable, while glucose and sodium acetate have several peaks across the spectrum that seem at lower intensities. 
@@ -94,7 +102,9 @@ I’ve identified several potential improvements:
 - Changing the loss to a weighted loss or an adaptive loss that would rebalance the harder task of regressing the sodium acetate during backpropagation
 - Changing the architecture of my network to allow better global representations of peaks of interest that must be considered in regression. I could perhaps implement attention mechanisms in the Unet bottleneck to link peaks together. 
 - I also have identified the lack of data as a main issue for this challenge. I could revisit the data augmentation pipeline and validation set creation algorithms.
+
 ---
+
 ## Key Takeaways
 
 - Raman spectra differ significantly across instruments, requiring robust preprocessing.
